@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,11 @@ public class RaycastExample : MonoBehaviour
 {
     public Transform player;
     public float rayDistance = 100f;
-    private string lastWall;
+    private string lastPoint = "Point1";
     public float movementSpeed = 5f;
     public float rotationSpeed = 90f;
     private Rigidbody2D rb;
+    string[] points = { "Point1", "Point2", "Point3", "Point4", "Point5", "Point6"};
 
     private void Start()
     {
@@ -20,8 +22,8 @@ public class RaycastExample : MonoBehaviour
     {
         Vector2 origin = transform.position + transform.up * -.51f;// * -2.25f;
         Vector2 direction = -transform.up;
-        Vector2 directionLeft = Quaternion.Euler(0, 0, 30) * direction;
-        Vector2 directionRight = Quaternion.Euler(0, 0, -30) * direction;
+        Vector2 directionLeft = Quaternion.Euler(0, 0, 10) * direction;
+        Vector2 directionRight = Quaternion.Euler(0, 0, -10) * direction;
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, rayDistance);
         RaycastHit2D hitLeft = Physics2D.Raycast(origin, directionLeft, rayDistance);
@@ -33,14 +35,24 @@ public class RaycastExample : MonoBehaviour
 
         if (hit.collider != null)
         {
-            Debug.Log("Raycast hit: " + hit.collider.name + " at point: " + hit.point);
+            //Debug.Log("Raycast hit: " + hit.collider.name + " at point: " + hit.point);
             Debug.DrawRay(origin, direction * hit.distance, Color.red);
             Debug.DrawRay(origin, directionLeft * hitLeft.distance, Color.red);
             Debug.DrawRay(origin, directionRight * hitRight.distance, Color.red);
 
-            if (hit.collider.gameObject.CompareTag("Wall") && hit.distance >=1)
+            //if (hit.collider.gameObject.CompareTag("Point1") ||)
+
+            foreach (string point in points)
             {
-                Debug.Log("Close to " + hit.collider.name);
+                if (hit.collider.gameObject.CompareTag("PatrolPoint"))
+                {
+                    lastPoint = gameObject.name;
+                }
+            }
+
+            if (hit.collider.gameObject.CompareTag("Wall") && hit.distance >=3)
+            {
+                //Debug.Log("Close to " + hit.collider.name);
                 //if (hit.distance <= 4f)
                 //{
                 //    transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
@@ -55,7 +67,7 @@ public class RaycastExample : MonoBehaviour
             }
             else if (hit.collider.gameObject.CompareTag("PatrolPoint") && hit.distance <= 2f)
             {
-                Debug.Log("Close to " + hit.collider.name);
+                //Debug.Log("Close to " + hit.collider.name);
                 //transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
                 transform.position += (Vector3)direction * movementSpeed * Time.deltaTime;
             }
@@ -64,6 +76,7 @@ public class RaycastExample : MonoBehaviour
             {
                 Vector2 dir = (player.position - transform.position).normalized;
                 rb.velocity = dir * movementSpeed;
+                rotationSpeed = 0;
             }
             if (hitLeft.collider.gameObject.CompareTag("Player"))
             {
@@ -86,7 +99,8 @@ public class RaycastExample : MonoBehaviour
 
             if (hit.collider.gameObject.CompareTag("Wall") && hitLeft.collider.gameObject.CompareTag("Wall") && hitRight.collider.gameObject.CompareTag("Wall") && hit.distance <= 2f)
             {
-                RotateLeft();
+                Debug.Log("The last point was: " + lastPoint);
+                Vector2 direct = (GameObject.Find(points[LastPoint(lastPoint) - 1]).transform.position - transform.position).normalized;
             }
         }
         else
@@ -103,5 +117,18 @@ public class RaycastExample : MonoBehaviour
     void RotateRight()
     {
         transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
+    }
+
+    int LastPoint(string pointy)
+    {
+        int value = 1;
+
+        if (pointy != null || pointy != "Enemy")
+        {
+            string numberPart = pointy.Replace("Point", "");
+            int.TryParse(numberPart, out value);
+        }
+
+        return value;
     }
 }
