@@ -6,7 +6,7 @@ using UnityEngine;
 public class RaycastExample : MonoBehaviour
 {
     public Transform player;
-    public float rayDistance = 100f;
+    public float rayDistance = 22f;
     private string lastPoint = "Point1";
     public float movementSpeed = 5f;
     public float rotationSpeed = 90f;
@@ -18,12 +18,12 @@ public class RaycastExample : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector2 origin = transform.position + transform.up * -.51f;// * -2.25f;
         Vector2 direction = -transform.up;
-        Vector2 directionLeft = Quaternion.Euler(0, 0, 10) * direction;
-        Vector2 directionRight = Quaternion.Euler(0, 0, -10) * direction;
+        Vector2 directionLeft = Quaternion.Euler(0, 0, 25) * direction;
+        Vector2 directionRight = Quaternion.Euler(0, 0, -25) * direction;
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, rayDistance);
         RaycastHit2D hitLeft = Physics2D.Raycast(origin, directionLeft, rayDistance);
@@ -46,29 +46,17 @@ public class RaycastExample : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("PatrolPoint"))
                 {
-                    lastPoint = gameObject.name;
+                    lastPoint = hit.collider.gameObject.name;
+                    print(lastPoint + " should be a patrol point");
                 }
-            }
-
-            if (hit.collider.gameObject.CompareTag("Wall") && hit.distance >=3)
-            {
-                //Debug.Log("Close to " + hit.collider.name);
-                //if (hit.distance <= 4f)
-                //{
-                //    transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
-                //}
-                transform.position += (Vector3)direction * movementSpeed * Time.deltaTime;
             }
 
             if (hit.collider.gameObject.CompareTag("PatrolPoint") && hit.distance >= 2f)
             {
-                //Debug.Log("Away from " + hit.collider.name);
                 transform.position += (Vector3)direction * movementSpeed * Time.deltaTime;
             }
             else if (hit.collider.gameObject.CompareTag("PatrolPoint") && hit.distance <= 2f)
             {
-                //Debug.Log("Close to " + hit.collider.name);
-                //transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
                 transform.position += (Vector3)direction * movementSpeed * Time.deltaTime;
             }
 
@@ -76,13 +64,13 @@ public class RaycastExample : MonoBehaviour
             {
                 Vector2 dir = (player.position - transform.position).normalized;
                 rb.velocity = dir * movementSpeed;
-                rotationSpeed = 0;
+                rb.angularVelocity = 0f;
             }
-            if (hitLeft.collider.gameObject.CompareTag("Player"))
+            if (hitLeft.collider.gameObject.CompareTag("Player") && !hit.collider.gameObject.CompareTag("Player"))
             {
                 RotateLeft();
             }
-            if (hitRight.collider.gameObject.CompareTag("Player"))
+            if (hitRight.collider.gameObject.CompareTag("Player") && !hit.collider.gameObject.CompareTag("Player"))
             {
                 RotateRight();
             }
@@ -90,17 +78,29 @@ public class RaycastExample : MonoBehaviour
             if (hitLeft.collider.gameObject.CompareTag("PatrolPoint") && hitLeft.distance >= 4f && !hit.collider.gameObject.CompareTag("Player"))
             {
                 RotateLeft();
+                //lastPoint = hit.collider.gameObject.name;
             }
 
             if (hitRight.collider.gameObject.CompareTag("PatrolPoint") && hitRight.distance >= 4f && !hit.collider.gameObject.CompareTag("Player"))
             {
                 RotateRight();
+                //lastPoint = hit.collider.gameObject.name;
             }
 
-            if (hit.collider.gameObject.CompareTag("Wall") && hitLeft.collider.gameObject.CompareTag("Wall") && hitRight.collider.gameObject.CompareTag("Wall") && hit.distance <= 2f)
+            if (hit.collider.gameObject.CompareTag("Wall") && hitLeft.collider.gameObject.CompareTag("Wall") && hitRight.collider.gameObject.CompareTag("Wall"))// && hit.distance <= 2f)
             {
                 Debug.Log("The last point was: " + lastPoint);
                 Vector2 direct = (GameObject.Find(points[LastPoint(lastPoint) - 1]).transform.position - transform.position).normalized;
+                rb.velocity = direct * movementSpeed;
+                if (lastPoint == points[points.Length - 1] && gameObject.CompareTag("PatrolPoint") && !hit.collider.gameObject.CompareTag("Player"))
+                {
+                    lastPoint = points[0];
+                }
+                else if (lastPoint != points[points.Length - 1] && gameObject.CompareTag("PatrolPoint") && !hit.collider.gameObject.CompareTag("Player"))
+                {
+                    lastPoint = points[LastPoint(lastPoint)];
+                }
+                print("NEW LASTPOINT: " + lastPoint);
             }
         }
         else
@@ -111,18 +111,19 @@ public class RaycastExample : MonoBehaviour
 
     void RotateLeft()
     {
-        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime * 3);
+        rb.angularVelocity = 0f;
     }
 
     void RotateRight()
     {
-        transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime * 3);
+        rb.angularVelocity = 0f;
     }
 
     int LastPoint(string pointy)
     {
         int value = 1;
-
         if (pointy != null || pointy != "Enemy")
         {
             string numberPart = pointy.Replace("Point", "");
