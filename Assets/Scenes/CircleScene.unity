@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 150085959}
   - component: {fileID: 150085958}
-  - component: {fileID: 150085957}
+  - component: {fileID: 150085960}
   m_Layer: 0
   m_Name: Point3
   m_TagString: PatrolPoint
@@ -140,41 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &150085957
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150085956}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.12
 --- !u!212 &150085958
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -242,6 +207,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &150085960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150085956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3b76246cd35e549a7ea34fcf607177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkAmount: 6.95
+  distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &296140664
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 515199266}
   - component: {fileID: 515199265}
-  - component: {fileID: 515199264}
+  - component: {fileID: 515199267}
   m_Layer: 0
   m_Name: Point2
   m_TagString: PatrolPoint
@@ -520,41 +502,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &515199264
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515199263}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.12
 --- !u!212 &515199265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -622,6 +569,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &515199267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515199263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3b76246cd35e549a7ea34fcf607177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkAmount: 6.95
+  distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &578130786
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,7 +596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 578130789}
   - component: {fileID: 578130788}
-  - component: {fileID: 578130787}
+  - component: {fileID: 578130790}
   m_Layer: 0
   m_Name: Point4
   m_TagString: PatrolPoint
@@ -640,41 +604,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &578130787
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578130786}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.12
 --- !u!212 &578130788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -742,6 +671,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &578130790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578130786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3b76246cd35e549a7ea34fcf607177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkAmount: 6.95
+  distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &580290789
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,7 +698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 580290792}
   - component: {fileID: 580290791}
-  - component: {fileID: 580290790}
+  - component: {fileID: 580290793}
   m_Layer: 0
   m_Name: Point6
   m_TagString: PatrolPoint
@@ -760,41 +706,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &580290790
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580290789}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.12
 --- !u!212 &580290791
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -862,6 +773,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &580290793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580290789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3b76246cd35e549a7ea34fcf607177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkAmount: 6.95
+  distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &672299190
 GameObject:
   m_ObjectHideFlags: 0
@@ -1167,7 +1095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922927282}
   - component: {fileID: 922927281}
-  - component: {fileID: 922927280}
+  - component: {fileID: 922927283}
   m_Layer: 0
   m_Name: Point5
   m_TagString: PatrolPoint
@@ -1175,41 +1103,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &922927280
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922927279}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.12
 --- !u!212 &922927281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1277,6 +1170,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &922927283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922927279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3b76246cd35e549a7ea34fcf607177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkAmount: 6.95
+  distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1011227218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,7 +1327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058274785}
   - component: {fileID: 1058274784}
-  - component: {fileID: 1058274783}
+  - component: {fileID: 1058274786}
   m_Layer: 0
   m_Name: Point1
   m_TagString: PatrolPoint
@@ -1425,41 +1335,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &1058274783
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058274782}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.12
 --- !u!212 &1058274784
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1527,6 +1402,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1058274786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058274782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3b76246cd35e549a7ea34fcf607177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shrinkAmount: 6.95
+  distance: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1103171779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,7 +1431,7 @@ GameObject:
   - component: {fileID: 1103171783}
   - component: {fileID: 1103171782}
   - component: {fileID: 1103171781}
-  - component: {fileID: 1103171780}
+  - component: {fileID: 1103171785}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1547,23 +1439,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1103171780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103171779}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11eb60917b9e82c4db0d7d76d7b018f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 1
-  distance: 5
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!50 &1103171781
 Rigidbody2D:
   serializedVersion: 4
@@ -1693,6 +1568,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1103171785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103171779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4663a2fa401b66f4ca9fc8a506510f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1767513493}
+  rayDistance: 22
+  rayDistanceShort: 3
+  movementSpeed: 5
 --- !u!1 &1698831971
 GameObject:
   m_ObjectHideFlags: 0
