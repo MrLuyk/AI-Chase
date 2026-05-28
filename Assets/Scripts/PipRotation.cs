@@ -10,6 +10,12 @@ public class PipRotation : MonoBehaviour
     public float distance = 5.0f;
     public LayerMask layerMask;
 
+    [SerializeField] private Transform pointA;
+    [SerializeField] private Transform pointB;
+    [SerializeField] private Transform pointAB;
+    private float interpolateAmount;
+    private HashSet<GameObject> enemiesInRange = new HashSet<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,52 +26,61 @@ public class PipRotation : MonoBehaviour
     void Update()
     {
         Vector2 origin = transform.position;
-        Vector2 direction = transform.right;
 
-        RaycastHit2D hit = Physics2D.CircleCast(origin, radius, direction, distance, layerMask);
+        HashSet<GameObject> currentEnemies = new HashSet<GameObject>();
 
-        //float hitDistance = (hit.collider != null) ? hit.distance : distance;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(origin, radius);
 
-        Color color = (hit.collider != null) ? Color.red : Color.green;
+        //Debug.Log("Hits found: " + hits.Length);
 
-        //Debug.DrawRay(origin, direction * hitDistance, color);
-        //Debug.DrawRay(origin, direction, color);
-
-        DrawCircle(origin, radius, color);
-        //DrawCircle(origin + (direction * hitDistance), radius, color);
-
-        if (hit.collider != null)
+        if (gameObject.CompareTag("PatrolPoint"))
         {
-            Debug.Log("Hit: " + hit.collider.name);
+
+            foreach (Collider2D hit in hits)
+            {
+                //Debug.Log(hit.name + " Tag: " + hit.tag);
+                if (hit.CompareTag("Enemy"))
+                {
+                    //Debug.Log("Enemy is within " + gameObject.name);
+                    currentEnemies.Add(hit.gameObject);
+
+                    // Enemy just entered
+                    if (!enemiesInRange.Contains(hit.gameObject))
+                    {
+                        Debug.Log("Enemy HAS Entered: " + gameObject.name);
+                        onPipEnter();
+                    }
+                }
+            }
         }
+
+        enemiesInRange = currentEnemies;
 
     }
 
-    void DrawCircle(Vector2 center, float radius, Color color)
+    private void OnDrawGizmosSelected()
     {
-        int segments = 16;
-        for (int i = 0; i < segments; i++)
-        {
-            float angle1 = i * Mathf.PI * 2 / segments;
-            float angle2 = (i + 1) * Mathf.PI * 2 / segments;
-            Vector2 p1 = center + new Vector2(Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
-            Vector2 p2 = center + new Vector2(Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
-            Debug.DrawLine(p1, p2, color);
-        }
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
+    //void DrawCircle(Vector2 center, float radius, Color color)
     //{
-    //    // Optional: only react to the player
-    //    if (collision.CompareTag("Enemy"))
+    //    int segments = 16;
+    //    for (int i = 0; i < segments; i++)
     //    {
-    //        targetCollider.radius -= shrinkAmount;
-
-    //        // Prevent negative radius values
-    //        if (targetCollider.radius < 0)
-    //        {
-    //            targetCollider.radius = 0;
-    //        }
+    //        float angle1 = i * Mathf.PI * 2 / segments;
+    //        float angle2 = (i + 1) * Mathf.PI * 2 / segments;
+    //        Vector2 p1 = center + new Vector2(Mathf.Cos(angle1), Mathf.Sin(angle1)) * radius;
+    //        Vector2 p2 = center + new Vector2(Mathf.Cos(angle2), Mathf.Sin(angle2)) * radius;
+    //        Debug.DrawLine(p1, p2, color);
     //    }
     //}
+
+    void onPipEnter()
+    {
+        // interpolation between pips
+        interpolateAmount = (interpolateAmount + Time.deltaTime) % 1f;
+        pointAB.position = Vector3.Lerp(pointA.position, pointB.position, interpolateAmount);
+    }
 }
